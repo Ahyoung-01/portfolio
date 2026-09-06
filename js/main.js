@@ -494,3 +494,43 @@ function createShortsCard(item, isClone = false) {
     renderShortsWall();
 
 });
+
+const about = document.querySelector('#about');
+const skillItems = document.querySelectorAll('.skill-item');
+
+function skillScrollAnimation() {
+    const rect = about.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const scrollDistance = windowHeight - rect.top;
+    const totalDistance = windowHeight + rect.height;
+
+    let progress = scrollDistance / totalDistance;
+    progress = Math.max(0, Math.min(1, progress));
+
+    // 말풍선 애니메이션이 진행될 스크롤 범위
+    const start = 0.5;
+    const end = 0.75;
+
+    let skillProgress = (progress - start) / (end - start);
+
+    // 일단 전부 숨김
+    skillItems.forEach(item => {
+        item.classList.remove('show');
+    });
+
+    // 애니메이션 범위 안일 때만 하나씩 표시
+    if (skillProgress >= 0 && skillProgress < 1) {
+
+        const currentIndex = Math.floor(
+            skillProgress * skillItems.length
+        );
+
+        skillItems[currentIndex]?.classList.add('show');
+    }
+}
+
+window.addEventListener('scroll', skillScrollAnimation);
+window.addEventListener('resize', skillScrollAnimation);
+
+skillScrollAnimation();

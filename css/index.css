@@ -241,7 +241,7 @@ section{
 #about{
 
 max-width:1200px;
-height:100vh;
+height:160vh;
 
 margin:100px auto;
 
@@ -544,6 +544,135 @@ transition:.3s;
 
 transform:translateY(-8px) scale(1.08);
 
+}
+
+.dock-left, .dock-right {
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.skill-item{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+/* 말풍선 */
+.skill-tooltip{
+    position:absolute;
+
+    bottom:95px;
+    left:50%;
+
+    transform:translateX(-50%) translateY(15px);
+
+    background:rgba(35,35,35,.92);
+    color:#fff;
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    white-space:nowrap;
+    text-align:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+
+    z-index:20;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+.skill-rating{
+    display:flex;
+    justify-content:center;
+    gap:4px;
+    margin-top:8px;
+    font-size:11px;
+}
+
+.skill-rating .fa-solid{
+    color:#ffd43b;
+}
+
+.skill-rating .fa-regular{
+    color:#777;
+}
+
+/* 말풍선 꼬리 */
+.skill-tooltip::after{
+    content:'';
+
+    position:absolute;
+
+    bottom:-7px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-left:7px solid transparent;
+    border-right:7px solid transparent;
+    border-top:7px solid rgba(35,35,35,.92);
+}
+
+
+.skill-tooltip strong{
+    display:block;
+
+    font-size:13px;
+    font-weight:600;
+
+    margin-bottom:4px;
+}
+
+
+.skill-tooltip span{
+    display:block;
+
+    font-size:10px;
+
+    color:#ccc;
+}
+
+
+/* 스크롤 등장 */
+.skill-item.show .skill-tooltip{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateX(-50%) translateY(0);
+
+}
+
+
+/* 기존 이미지 스타일 */
+.skill-item img{
+
+    width:70px;
+
+    transition:.3s;
+
+}
+
+
+.skill-item img:hover{
+
+    transform:translateY(-8px) scale(1.08);
+
+}
+/* 아이콘 hover 시 해당 말풍선 표시 */
+.skill-item:hover .skill-tooltip{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(-50%) translateY(0);
 }
 
 /*========================*/
@@ -1171,23 +1300,8 @@ gap:10px;
     gap:35px;
 }
 
-.footer-menu a{
-    color:#ddd;
-    transition:.3s;
-}
-
-.footer-menu a:hover{
-    color:#fff;
-}
-
-.footer-info{
-    margin:35px 0;
-    color:#999;
-    line-height:2;
-    font-size:15px;
-}
-
 .copyright{
+    margin-top: 30px;
     color:#666;
     font-size:14px;
 }
